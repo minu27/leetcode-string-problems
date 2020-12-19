@@ -29,7 +29,7 @@ public class StringReverse {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		StringReverse m = new StringReverse();
-		char[] a = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
+		char[] a = {'h','e','l','l','o'};
 		System.out.println(m.reverseString(a));
 	}
 }
@@ -38,6 +38,40 @@ public class StringReverse {
 > Input: ["h","e","l","l","o"]
 
 > Output: ["o","l","l","e","h"]
+
+## 2) Reverse Integer
+
+Given a 32-bit signed integer, reverse digits of an integer.
+
+```
+public class ReverseInteger {
+
+	public int reverse(int x) {
+        int reverse = 0;
+        while(x!=0){
+            int pop = x%10;
+            x = x/10;
+            if(reverse > Integer.MAX_VALUE/10 || (reverse == Integer.MAX_VALUE/10 && pop>7)) return 0;
+            if(reverse < Integer.MIN_VALUE/10 || (reverse == Integer.MIN_VALUE/10 && pop<-8)) return 0;
+            reverse = reverse * 10 + pop;
+        }
+        return reverse;
+    }
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		ReverseInteger I = new ReverseInteger();
+		System.out.println("Reverse Integer = "+I.reverse(123));
+	}
+}
+```
+
+> Input: x = 123
+
+> Output: 321
+
+
+
 
 
 
