@@ -166,6 +166,74 @@ public class ValidPalindrome {
 
 > Output: true
 
+## 5) String to Integer (atoi)
+
+Implement atoi which converts a string to an integer.
+
+The function first discards as many whitespace characters as necessary until the first non-whitespace character is found. Then, starting from this character takes an optional initial plus or minus sign followed by as many numerical digits as possible, and interprets them as a numerical value.
+
+The string can contain additional characters after those that form the integral number, which are ignored and have no effect on the behavior of this function.
+
+If the first sequence of non-whitespace characters in str is not a valid integral number, or if no such sequence exists because either str is empty or it contains only whitespace characters, no conversion is performed.
+
+If no valid conversion could be performed, a zero value is returned.
+
+```
+public class StringToInteger {
+	static int myAtoi(String s)
+    {
+		char str[] = s.toCharArray();
+        if(str.length==0 )
+            return 0;
+        
+        int sign = 1, base = 0, i = 0;
+ 
+        // if whitespaces then ignore.
+        while (str[i] == ' ' && str.length-1!=i)
+        {
+            i++;
+        }
+        
+        // sign of number
+        if (str[i] == '-' || str[i] == '+')
+        {
+            sign = 1 - 2 * (str[i++] == '-' ? 1 : 0);
+        }
+ 
+        // checking for valid input
+        while (i < str.length 
+               && str[i] >= '0'
+               && str[i] <= '9') {
+ 
+            // handling overflow test case
+            if (base > Integer.MAX_VALUE / 10
+                || (base == Integer.MAX_VALUE / 10
+                    && str[i] - '0' > 7)) 
+            {
+                if (sign == 1)
+                    return Integer.MAX_VALUE;
+                else
+                    return Integer.MIN_VALUE;
+            }
+            base = 10 * base + (str[i++] - '0');
+        }
+        return base * sign;
+    }
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		String s = "  -42";
+	       
+        // Function call
+        int val = myAtoi(s);
+        System.out.printf("%d ", val);
+	}
+}
+```
+
+> Input: str = "   -42"
+
+> Output: -42
+
 
 
 
